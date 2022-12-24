@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            * {
+              box-sizing: border-box;
+            }
+            
+            /* Create two equal columns that floats next to each other */
+            .column {
+              float: left;
+              width: 50%;
+              padding: 10px;
+              height: 500px; /* Should be removed. Only for demonstration */
+            }
+            
+            /* Clear floats after the columns */
+            .row:after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+            </style>
+
+        <title>Title</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+
+        <h2>Система прогнозування показників продажу електроенергії</h2>
+
+        <div class="row">
+            <div class="column" style="background-color:#aaa;">
+                <h2></h2>
+                <div class="column">
+                   
+                    <form action="http://127.0.0.1:5000/renderDf">
+                        <input type="submit" value="Загрузка даних" name="LoadData"/>                            
+                    </form>
+                    <form action="http://127.0.0.1:5000/bestautocor">
+                        <input type="submit" value="Визначення найкращого коефіцієнту кореляції та лагу при ньому" name="LoadData"/>                            
+                    </form>
+    
+                    <form action="http://127.0.0.1:5000/coef1">
+                        
+                        <input type="submit" value="Визначення параметрів несезонного порядку" name="coef1"/>   
+                                                  
+                    </form>
+        
+                    <form action="http://127.0.0.1:5000/coef2">
+                        <button type="button" class="btn btn-warning">
+                        <input type="submit" value="Визначення параметрів сезонного порядку" name="coef1"/>                            
+                        </button>
+                    </form>
+        
+                    <form action="http://127.0.0.1:5000/fitModel">
+                        <input type="submit" value="Навчити модель" name="fitmodel"/>                            
+                    </form>
+                    
+
+                    <form action="http://127.0.0.1:5000/forecast">
+                        <input type="submit" value="Зробити прогноз" name="prediction"/>                            
+                    </form>
+        
+                    <form action="http://127.0.0.1:5000/mse">
+                        
+                        <input type="submit" value="Середнє квадратичне відхилення" name="mse"/>                            
+                    </form>
+                </div>
+    
+            </div>
+                <div class="column" >
+                    <h2>Несезонний порядок</h2>
+                    <div class="column">
+                        {% for table in tables %}
+                                {{titles[loop.index]}}
+                                {{ table|safe }}
+                                {% endfor %}
+                    </div>
+                </div>
+        </div>
+
+
+
+            
+    </body>
+</html>

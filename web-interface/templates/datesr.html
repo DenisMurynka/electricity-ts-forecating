@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            * {
+              box-sizing: border-box;
+            }
+            
+            /* Create two equal columns that floats next to each other */
+            .column {
+              float: left;
+              width: 50%;
+              padding: 10px;
+              height: 500px; /* Should be removed. Only for demonstration */
+            }
+            
+            /* Clear floats after the columns */
+            .row:after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+            </style>
+
+        <title>Title</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+
+        <h2>Electricity forecasting system</h2>
+
+        <div class="row">
+            <div class="column" style="background-color:#aaa;">
+                <h2>Forecasting process</h2>
+                <div class="column">
+
+                    <form action="http://127.0.0.1:5000/bestautocor">
+                        <input type="submit" value="Find best autocorrelation coeficient and it`s index --> best lags " name="LoadData"/>                            
+                    </form>
+
+                    <form action="http://127.0.0.1:5000/renderDf">
+                        <input type="submit" value="Load data" name="LoadData"/>                            
+                    </form>
+        
+    
+                    <form action="http://127.0.0.1:5000/coef1">
+                        <input type="submit" value="Find AIC coefs" name="coef1"/>                            
+                    </form>
+        
+                    <form action="http://127.0.0.1:5000/coef2">
+                        <input type="submit" value="Find AIC coefs for season order" name="coef1"/>                            
+                    </form>
+        
+                    <form action="http://127.0.0.1:5000/fitModel">
+                        <input type="submit" value="Fit model" name="fitmodel"/>                            
+                    </form>
+                    
+                    <form action="http://127.0.0.1:5000/dateRanges">
+                        <input type="submit" value="Choose date ranges" name="dateRange"/>                            
+                    </form>
+
+                    <form action="http://127.0.0.1:5000/forecast">
+                        <input type="submit" value="Prediction" name="prediction"/>                            
+                    </form>
+        
+    
+                </div>
+    
+            </div>
+                <div class="column" >
+                    <h2>Seasonal order,</h2>
+                    <div class="column">
+                       dates been chosen
+                    </div>
+                </div>
+        </div>
+
+
+
+            
+    </body>
+</html>
